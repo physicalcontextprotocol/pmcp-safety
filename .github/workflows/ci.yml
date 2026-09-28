@@ -1,0 +1,90 @@
+name: pmcp-safety CI
+
+# Deliberately minimal. This repository has no test suite, so the only
+# honest checks are: does it import, and is the obviously-broken
+# surface still visibly broken rather than quietly working?
+#
+# It would be easy to add a job that passes trivially and call it CI.
+# That would be worse than nothing.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+
+  import-check:
+    name: Module import check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install runtime deps
+        run: python -m pip install --upgrade pip cryptography aiohttp
+
+      - name: Confirm each sub-module imports
+        run: |
+          export PYTHONPATH="$GITHUB_WORKSPACE:$PYTHONPATH"
+          python -c "
+          from compliance.harness import ComplianceHarness
+          from edge.hardening import EdgeHardeningMiddleware, RateLimiter, InputValidator
+          from multisig.gate import MultisigGate
+          print('compliance, edge, multisig import OK')
+          "
+
+  # A guard, not a gate. The point is that the mock backends should not
+  # be able to quietly become real-looking. If someone replaces the mock
+  # with a genuine TEE backend or a real simulator, this job's intent is
+  # to make them update the docs at the same time.
+  mock-guard:
+    name: Mock-backend reminder
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Report which backends are still mocked
+        run: |
+          if grep -rq "MOCK_QUOTE" tee-attestator/; then
+            echo "::warning title=TEE attestator is still mock-backed::"
+            echo "::warning::tee-attestator still returns MOCK_QUOTE. It is not a"
+            echo "::warning::security boundary. If you have just replaced it, remove"
+            echo "::warning::this check and update README.md and SECURITY.md."
+          fi
+          if grep -rq 'simulator.*mock' safety-loop/; then
+            echo "::warning title=Safety loop still defaults to the mock simulator::"
+            echo "::warning::Wire a real robot or Gazebo before drawing production"
+            echo "::warning::conclusions from safety-loop output."
+          fi
+
+  summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    needs: [import-check, mock-guard]
+    if: always()
+    steps:
+      - name: Report status
+        run: |
+          echo "## pmcp-safety CI Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|-----|--------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| import-check | ${{ needs.import-check.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| mock-guard   | ${{ needs.mock-guard.result }}   |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**This repository has no test suite.** A green run here means" >> "$GITHUB_STEP_SUMMARY"
+          echo "the modules import, and nothing more. Do not read it as evidence" >> "$GITHUB_STEP_SUMMARY"
+          echo "that the safety loop, the TEE attestator, or the multisig gate" >> "$GITHUB_STEP_SUMMARY"
+          echo "are correct. Writing those tests is the obvious gap to close." >> "$GITHUB_STEP_SUMMARY"
