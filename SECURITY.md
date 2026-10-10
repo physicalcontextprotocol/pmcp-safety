@@ -1,7 +1,7 @@
-# Security policy — pmcp-safety
+# Security policy — pcp-safety
 
 The default policy for this organization lives in
-[`pmcp-spec/SECURITY.md`](https://github.com/physicalcontextprotocol/pmcp-spec/blob/main/SECURITY.md)
+[`pcp-spec/SECURITY.md`](https://github.com/physicalcontextprotocol/pcp-spec/blob/main/SECURITY.md)
 and applies here in full. This file records what is specific to the
 safety sub-project.
 
@@ -49,7 +49,7 @@ SGX / SEV-SNP / TDX verification path and a real robot.
 - The `m-of-n` threshold default. Changing it is a configuration
   decision, not a vulnerability.
 - Missing coverage. There is no test suite in this repository yet;
-  behaviour is exercised indirectly through `pmcp-python`.
+  behaviour is exercised indirectly through `pcp-python`.
 
 ## Supported
 

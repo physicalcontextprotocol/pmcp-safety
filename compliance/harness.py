@@ -1,12 +1,12 @@
 """
-P-MCP ISO/IEC Compliance Harness
+PCP ISO/IEC Compliance Harness
 ===================================
 Automated compliance checking against:
   - ISO 10218-1/2: Industrial robot safety requirements
   - IEC 62443-3-3: Industrial automation security (SR levels)
   - ISO 13849-1: Safety-related parts of control systems (PL levels)
 
-The harness runs a battery of checks against a live P-MCP robot endpoint
+The harness runs a battery of checks against a live PCP robot endpoint
 and produces a structured compliance report.
 
 Usage:
@@ -78,7 +78,7 @@ class CheckReport:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  Compliance Client (thin P-MCP client)
+#  Compliance Client (thin PCP client)
 # ─────────────────────────────────────────────────────────────────────────────
 
 class ComplianceClient:
@@ -442,8 +442,8 @@ async def main() -> None:
     import argparse
     import sys
     logging.basicConfig(level=logging.INFO)
-    parser = argparse.ArgumentParser(description="P-MCP Compliance Harness")
-    parser.add_argument("--url", default="http://localhost:8080", help="Robot P-MCP URL")
+    parser = argparse.ArgumentParser(description="PCP Compliance Harness")
+    parser.add_argument("--url", default="http://localhost:8080", help="Robot PCP URL")
     parser.add_argument("--standard", default="all",
                         choices=["all", "iso10218", "iec62443", "iso13849"])
     parser.add_argument("--output", default="", help="Write JSON report to file")

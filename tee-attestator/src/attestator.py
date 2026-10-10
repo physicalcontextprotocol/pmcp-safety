@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P-MCP TEE Attestation Service
+PCP TEE Attestation Service
 ============================
 
 Remote attestation service for robotic commands using Intel SGX or AWS Nitro patterns.
@@ -309,7 +309,7 @@ class TEEAttestator:
         site = web.TCPSite(runner, host, port)
         await site.start()
 
-        logger.info(f"P-MCP TEE Attestator starting on http://{host}:{port}")
+        logger.info(f"PCP TEE Attestator starting on http://{host}:{port}")
 
         try:
             await asyncio.Event().wait()
@@ -510,7 +510,7 @@ class TEEAttestator:
 
 
 async def main():
-    parser = argparse.ArgumentParser(description="P-MCP TEE Attestation Service")
+    parser = argparse.ArgumentParser(description="PCP TEE Attestation Service")
     parser.add_argument("--host", default="0.0.0.0", help="Host to bind to")
     parser.add_argument("--port", type=int, default=8085, help="Port to bind to")
     parser.add_argument("--log-level", default="INFO",

@@ -1,4 +1,4 @@
-# Contributing to pmcp-safety
+# Contributing to pcp-safety
 
 Safety-critical modules split out so the SDKs can depend on them rather
 than embed them.
@@ -11,7 +11,7 @@ This file covers what is specific to this repository.
 
 That is the first thing worth fixing. There is no `tests/` directory in
 this repository; behaviour is currently exercised only indirectly
-through `pmcp-python/tests/test_compliance.py` and the safety loop's own
+through `pcp-python/tests/test_compliance.py` and the safety loop's own
 smoke script. For a repository whose modules are named "safety-loop" and
 "multisig gate", that gap is the obvious thing to close.
 
@@ -42,9 +42,9 @@ answer is "the operation is refused".
 ## Known follow-up
 
 `ShadowPreview` and `ShadowStatus` currently exist as three separate
-copies in `pmcp-python/{pmcp,sdk,v05}/types.py`. The intended end-state
-is a single canonical definition here, re-exported from `pmcp-python`.
-Consolidating the three copies inside `pmcp-python` would sensibly come
+copies in `pcp-python/{pmcp,sdk,v05}/types.py`. The intended end-state
+is a single canonical definition here, re-exported from `pcp-python`.
+Consolidating the three copies inside `pcp-python` would sensibly come
 first.
 
 ## Releasing

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P-MCP Quote Generation Service
+PCP Quote Generation Service
 ===============================
 
 Generate attestation quotes for TEE verification.

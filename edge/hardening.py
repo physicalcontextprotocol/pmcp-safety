@@ -1,7 +1,7 @@
 """
-P-MCP Edge Hardening — Security & Resource Constraint Module
+PCP Edge Hardening — Security & Resource Constraint Module
 ==============================================================
-Hardening measures for edge-deployed P-MCP robot servers:
+Hardening measures for edge-deployed PCP robot servers:
 
   1. InputValidator     — strict JSON-RPC request validation, prevents injection
   2. RateLimiter        — per-peer token bucket, prevents DoS

@@ -1,4 +1,4 @@
-name: pmcp-safety CI
+name: pcp-safety CI
 
 # Deliberately minimal. This repository has no test suite, so the only
 # honest checks are: does it import, and is the obviously-broken
@@ -77,7 +77,7 @@ jobs:
     steps:
       - name: Report status
         run: |
-          echo "## pmcp-safety CI Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "## pcp-safety CI Summary" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
           echo "|-----|--------|" >> "$GITHUB_STEP_SUMMARY"

@@ -1,4 +1,4 @@
-# Changelog — pmcp-safety
+# Changelog — pcp-safety
 
 All notable changes to the safety sub-project. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
@@ -29,14 +29,14 @@ First tagged public release.
 - **`safety-loop/` defaults to `--simulator mock`.** The Gazebo path is
   flagged as not fully implemented in the source.
 - **There is no test suite in this repository.** Behaviour is exercised
-  only indirectly through `pmcp-python/tests/test_compliance.py` and
+  only indirectly through `pcp-python/tests/test_compliance.py` and
   the safety loop's own smoke script. For a repository whose modules
   are a safety loop and a signing gate, that is the obvious gap to
   close.
 - **No package metadata or version.** There is nothing to install yet.
 - `ShadowPreview` / `ShadowStatus` still exist as three separate copies
-  across `pmcp-python/{pmcp,sdk,v05}/types.py`. The intended end-state
-  is a single canonical definition here, re-exported from `pmcp-python`.
+  across `pcp-python/{pmcp,sdk,v05}/types.py`. The intended end-state
+  is a single canonical definition here, re-exported from `pcp-python`.
 
 ### Changed
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P-MCP Safety Loop - Extended Components
+PCP Safety Loop - Extended Components
 =======================================
 
 Additional safety verification components including:

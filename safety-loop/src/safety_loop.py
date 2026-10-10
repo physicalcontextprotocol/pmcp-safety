@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P-MCP Safety Loop
+PCP Safety Loop
 =================
 
 Continuous shadow verification running at 10 Hz with PyBullet/Gazebo simulation.
@@ -566,7 +566,7 @@ class SafetyAPI:
         site = web.TCPSite(runner, host, port)
         await site.start()
 
-        logger.info(f"P-MCP Safety Loop API starting on http://{host}:{port}")
+        logger.info(f"PCP Safety Loop API starting on http://{host}:{port}")
 
         try:
             await asyncio.Event().wait()
@@ -643,7 +643,7 @@ class SafetyAPI:
 
 
 async def main():
-    parser = argparse.ArgumentParser(description="P-MCP Safety Loop")
+    parser = argparse.ArgumentParser(description="PCP Safety Loop")
     parser.add_argument("--host", default="0.0.0.0", help="Host to bind to")
     parser.add_argument("--port", type=int, default=8086, help="Port to bind to")
     parser.add_argument("--rate", type=float, default=10.0, help="Loop rate in Hz")

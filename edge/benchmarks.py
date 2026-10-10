@@ -1,7 +1,7 @@
 """
-P-MCP Edge Benchmarks
+PCP Edge Benchmarks
 ========================
-Micro-benchmarks for edge-deployed P-MCP servers:
+Micro-benchmarks for edge-deployed PCP servers:
   - JSON-RPC parse + dispatch throughput (requests/sec)
   - E-stop round-trip latency (percentiles)
   - Actuation queue drain rate
@@ -166,7 +166,7 @@ async def bench_remote_estop(url: str, n: int = 100) -> BenchmarkResult:
 # ─────────────────────────────────────────────────────────────────────────────
 
 async def run_all(remote_url: Optional[str] = None) -> None:
-    print("P-MCP Edge Benchmarks")
+    print("PCP Edge Benchmarks")
     print("=" * 50)
 
     # Local benchmarks
@@ -187,7 +187,7 @@ async def run_all(remote_url: Optional[str] = None) -> None:
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(description="P-MCP Edge Benchmarks")
+    parser = argparse.ArgumentParser(description="PCP Edge Benchmarks")
     parser.add_argument("--url", default="", help="Remote robot URL for live benchmarks")
     parser.add_argument("--remote", action="store_true", help="Run remote benchmarks too")
     args = parser.parse_args()

@@ -1,5 +1,5 @@
 """
-P-MCP Human-AI Multisig Safety Gate
+PCP Human-AI Multisig Safety Gate
 =====================================
 Implements a multi-signature approval gate for high-risk robot commands.
 
@@ -312,7 +312,7 @@ class MultisigGate:
 
 class RiskScorer:
     """
-    Heuristic risk scoring for P-MCP actuation requests.
+    Heuristic risk scoring for PCP actuation requests.
     Returns a float 0.0 (safe) → 1.0 (extremely dangerous).
     """
 

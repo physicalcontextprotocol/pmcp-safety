@@ -1,7 +1,7 @@
-# pmcp-safety
+# pcp-safety
 
 Safety-critical modules split out as their own sub-project so that
-`pmcp-python` (and other SDKs) can depend on them rather than embed
+`pcp-python` (and other SDKs) can depend on them rather than embed
 them.
 
 ## Contents and maturity
@@ -29,25 +29,25 @@ Add the sub-project root to `PYTHONPATH` (or later, install this
 sub-project as a proper package):
 
 ```bash
-export PYTHONPATH="$PWD/pmcp-safety:$PYTHONPATH"
+export PYTHONPATH="$PWD/pcp-safety:$PYTHONPATH"
 ```
 
 There is no test suite in this sub-project as it stands; behaviour is
-exercised indirectly through `pmcp-python/tests/test_compliance.py`
+exercised indirectly through `pcp-python/tests/test_compliance.py`
 and the runtime safety loop's own smoke script (`safety-loop/src/`).
 
 ## Known follow-ups (per `MIGRATION_MAP.md`)
 
 - **`ShadowPreview` / `ShadowStatus` type location.** These currently
-  live in `pmcp-python/{pmcp,sdk,v05}/types.py` — three separate copies.
+  live in `pcp-python/{pmcp,sdk,v05}/types.py` — three separate copies.
   The intended end-state is a single canonical definition in
-  `pmcp-safety`, re-exported from `pmcp-python`, so upstream and
+  `pcp-safety`, re-exported from `pcp-python`, so upstream and
   downstream both see the same type. Not done yet; consolidating the
-  three copies inside `pmcp-python` should probably come first.
+  three copies inside `pcp-python` should probably come first.
 - **`pmcp_kinematics` soft import.** The migration note asked for a
-  soft `try/except` import here. In the current tree `pmcp-safety`
+  soft `try/except` import here. In the current tree `pcp-safety`
   does not import `pmcp_kinematics` at all; the only cross-repo edge
-  is `pmcp-python/v05/pmcp_safety_v5.py:412`, which is already a
+  is `pcp-python/v05/pmcp_safety_v5.py:412`, which is already a
   function-local (lazy) import, so this fix is moot for now.
 
 ## Honest limitations
